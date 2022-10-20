@@ -5,18 +5,25 @@
 ## 1.1 互联网架构的演变历程
 * 第1阶段
   * 数据访问量不大
+  
 ![alt 第1阶段](images/第1阶段.png)
+
 * 第2阶段
   * 数据访问量大，使用缓存技术
   * 不同业务访问不同的数据库
+
 ![alt 第2阶段](images/第2阶段.png)
+
 * 第3阶段
   * 主从读写分离
+  
 ![alt 第3阶段](images/第3阶段.png)
+
 * 第4阶段
   * MyISAM使用表锁，所以并发性能特别差
   * 分库分表开始流行
   * MySQL集群
+
 ![alt 第4阶段](images/第4阶段.png)
 
 ## 1.2 Redis入门
@@ -844,49 +851,4 @@ slaveof 主机1ip 6379
 
 
 
-### NOTES
-```shell
-# 查看linux版本
-cat /proc/version
-uname -a
-```
-  aliyun
-  Linux aliyun 5.10.23-5.al8.x86_64 #1 SMP Fri Apr 23 16:56:08 CST 2021 x86_64 x86_64 x86_64 GNU/Linux
-  Linux version 5.10.23-5.al8.x86_64 (mockbuild@x86-006.build.alibaba.eu6) (gcc (GCC) 10.2.1 20200825 (Alibaba 10.2.1-3 2.30), GNU ld version 2.35-12.2.al8) #1 SMP Fri Apr 23 16:56:08 CST 2021
-
-  tecent
-  Linux version 5.4.0-126-generic (buildd@lcy02-amd64-072) (gcc version 9.4.0 (Ubuntu 9.4.0-1ubuntu1~20.04.1)) #142-Ubuntu SMP Fri Aug 26 12:12:57 UTC 2022
-  Linux VM-4-11-ubuntu 5.4.0-126-generic #142-Ubuntu SMP Fri Aug 26 12:12:57 UTC 2022 x86_64 x86_64 x86_64 GNU/Linux
-
-  阿里云是龙蜥发行版，编译redis5.0.4出错：collect2: error: ld returned 1 exit status，安装最新redis7没问题，
-  腾讯云Ubuntu编译和安装redis5.0.4成功
-
-```shell
-make 
-# 出错：
-#collect2: error: ld returned 1 exit status
-#make[1]: *** [Makefile:219: redis-server] Error 1
-#make[1]: Leaving directory '/opt/redis/src'
-#make: *** [Makefile:6: all] Error 2
-
-cd src && make all
-
-# 出错
-#collect2: error: ld returned 1 exit status
-#make: *** [Makefile:219: redis-server] Error 1
-
-# 修改.make-settings
-vi .make-settings
--march=
-
-
-cc1: error: CPU you selected does not support x86-64 instruction set
-make: *** [Makefile:248: adlist.o] Error 1
-# 查看CPU信息
-cat /proc/cpuinfo
-# 阿里云是e5 2682 v4
-# 腾讯云 Xeon(R) Gold 6133 CPU @ 2.50GHz
-
-
-```
 
